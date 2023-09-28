@@ -11,5 +11,6 @@ class User(Base):
     password = Column(String(255))
     first_name = Column(String(255))
     last_name = Column(String(255))
+    user_type = Column(String, default="guest")
     role_id = Column(Integer, ForeignKey("roles.id"))
     tasks = relationship("Task", back_populates="user")

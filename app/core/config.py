@@ -1,5 +1,6 @@
 import os
-from pydantic import BaseSettings, SecretStr
+from pydantic_settings import BaseSettings
+from pydantic import SecretStr
 
 class Settings(BaseSettings):
     DATABASE_USERNAME: str
@@ -13,9 +14,6 @@ class Settings(BaseSettings):
     PROJECT_NAME: str
     DEBUG: bool
 
-    class Config:
-        env_file = ".env"
-
     def __init__(self):
         super().__init__()
         if os.path.exists(self.Config.env_file):
@@ -23,3 +21,10 @@ class Settings(BaseSettings):
                 for line in f:
                     key, value = line.split("=")
                     setattr(self, key.strip(), value.strip())
+
+    class Config:
+        env_file = ".env"
+
+# Create an instance of the Settings class
+settings = Settings()
+

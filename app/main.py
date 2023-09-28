@@ -1,3 +1,6 @@
+from dotenv import load_dotenv
+load_dotenv()  # Load variables from .env file
+
 from fastapi import FastAPI
 from .api.routes import tasks, task_assignments, task_status, users, comments,notifications, projects, template, tags, search
 from app.core.config import Settings

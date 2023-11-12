@@ -8,7 +8,9 @@ class TaskCreate(BaseModel):
     due_date: datetime
     completed: bool = False
     tags: List[str]
-
+    
+    class Config:
+        from_attributes = True
 
 class TaskUpdate(BaseModel):
     title: str = None
@@ -27,4 +29,6 @@ class Task(BaseModel):
     tags: List[str]
     created_at: datetime
     updated_at: datetime
-
+    
+    class Config:
+        from_attributes = True

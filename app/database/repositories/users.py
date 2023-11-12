@@ -1,4 +1,5 @@
-# app/db/repositories/users.py
+# app/database/repositories/users.py
+
 from fastapi import HTTPException
 from ...api.models.user import User
 from sqlalchemy.orm import Session
@@ -32,3 +33,6 @@ async def delete_user(user_id: int, db: Session):
     db.delete(db_user)
     db.commit()
 
+async def get_user_by_email(email: str, db: Session):
+    user = db.query(User).filter(User.email == email).first()
+    return user
